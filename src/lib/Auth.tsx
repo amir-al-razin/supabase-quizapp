@@ -40,7 +40,7 @@ export default function Auth() {
             e.preventDefault();
             handleLogin(email);
           }}
-          className="block px-5 py-2 font-semibold text-white transition duration-300 bg-green-500 rounded-sm hover:bg-green-600"
+          className="block px-5 py-2 text-xl font-semibold text-white transition duration-300 bg-green-500 rounded-sm hover:bg-green-600"
           disabled={loading}
         >
           {loading ? <span>Loading</span> : <span>Send link</span>}
