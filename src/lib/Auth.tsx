@@ -20,7 +20,7 @@ export default function Auth() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 form-widget ">
-      <h1 className="text-5xl font-bold tracking-tighter text-green-500">
+      <h1 className="p-3 text-6xl font-bold tracking-tighter text-transparent bg-gradient-to-r to-green-400 bg-clip-text from-green-600 via-green-500">
         You need to Login before starting Quiz
       </h1>
       <div className="flex flex-col gap-5">
@@ -29,7 +29,7 @@ export default function Auth() {
           <input
             className="px-2 py-2 text-xl font-semibold text-gray-800 text-green-800 placeholder-green-800 rounded-sm outline-none placeholder-opacity-60 "
             type="email"
-            placeholder="Your email"
+            placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
