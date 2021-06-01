@@ -1,15 +1,33 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import Auth from "../lib/Auth";
+import Account from "../lib/Account";
+import { supabase } from "../utils/supabaseClient";
+import { useSession } from "../store/useSession";
 
 export default function Home() {
+  const session = useSession((state) => state.session);
+  const setSession = useSession((state) => state.setSession);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex justify-center min-h-screen py-2 ">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <button className="px-3 py-2 font-semibold text-white bg-green-500 rounded-sm hover:bg-green-600">
-        supabase-quizapp
-      </button>
+    
+      {!session ? (
+        <Auth />
+      ) : (
+        <Account session={session} key={session.user.id} />
+      )}
     </div>
   );
 }
