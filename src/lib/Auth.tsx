@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Auth() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -10,9 +11,9 @@ export default function Auth() {
       setLoading(true);
       const { error } = await supabase.auth.signIn({ email });
       if (error) throw error;
-      alert("Check your email for the login link!");
+      toast.success("Check your email for the login link!");
     } catch (error) {
-      alert(error.error_description || error.message);
+      toast.error(error.error_description || error.message);
     } finally {
       setLoading(false);
     }
@@ -34,17 +35,19 @@ export default function Auth() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            handleLogin(email);
-          }}
-          className="block px-5 py-3 text-xl font-semibold text-white transition duration-300 bg-green-500 rounded-md hover:bg-green-600"
-          disabled={loading}
-        >
-          {loading ? <span>Loading</span> : <span>Send link</span>}
-        </button>
+        <div>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleLogin(email);
+            }}
+            className="w-full px-5 py-3 text-xl font-semibold text-white transition duration-300 bg-green-500 rounded-md hover:bg-green-600"
+            disabled={loading}
+          >
+            {loading ? <span>Loading</span> : <span>Send link</span>}
+          </button>
+          <Toaster />
+        </div>
       </div>
     </div>
   );
