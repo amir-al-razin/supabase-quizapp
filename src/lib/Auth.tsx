@@ -24,10 +24,10 @@ export default function Auth() {
         You need to Login before starting Quiz
       </h1>
       <div className="flex flex-col gap-5">
-        <div className="flex items-center px-2 border-4 border-green-500">
+        <div className="flex items-center px-2 border-4 border-green-500 rounded-lg">
           <MdEmail className="text-3xl text-green-500" />
           <input
-            className="px-2 py-2 text-xl font-semibold text-gray-800 text-green-800 placeholder-green-800 rounded-sm outline-none placeholder-opacity-60 "
+            className="px-2 py-2 text-xl font-semibold text-green-800 placeholder-green-800 rounded-md outline-none placeholder-opacity-60 "
             type="email"
             placeholder="Enter Email"
             value={email}
@@ -40,7 +40,7 @@ export default function Auth() {
             e.preventDefault();
             handleLogin(email);
           }}
-          className="block px-5 py-3 text-xl font-semibold text-white transition duration-300 bg-green-500 rounded-sm hover:bg-green-600"
+          className="block px-5 py-3 text-xl font-semibold text-white transition duration-300 bg-green-500 rounded-md hover:bg-green-600"
           disabled={loading}
         >
           {loading ? <span>Loading</span> : <span>Send link</span>}
